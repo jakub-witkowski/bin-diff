@@ -47,7 +47,7 @@ def headers_excluded_read_stepwise_and_compare(filename1, filename2, buffer_size
                 limit = buffer_size
 
             for i in range(limit):
-                if chunks_read == 0 and i < header_size:
+                if chunks_read == 0 and i < (header_size + 8):
                     continue
                 else:
                     if file1_chunk_content[i] != file2_chunk_content[i]:
@@ -87,14 +87,17 @@ header_size = header_size1 if header_size1 > header_size2 else header_size2 if h
 
 # data = read_stepwise_and_compare(filename1, filename2, buffer_size, header_size)
 
+def app():
+    print(headers_excluded_read_stepwise_and_compare(filename1, filename2, buffer_size, header_size))
+
 # code or function for which memory
 # has to be monitored
-def app():
-    input = np.array(headers_excluded_read_stepwise_and_compare(filename1, filename2, buffer_size, header_size))
-    y = fft(input)
+# def app():
+#     input = np.array(headers_excluded_read_stepwise_and_compare(filename1, filename2, buffer_size, header_size))
+#     y = fft(input)
 
-    print("The resultant Fourier transform:")
-    print(y)
+#     print("The resultant Fourier transform:")
+#     print(y)
 
 # starting the monitoring
 tracemalloc.start()
